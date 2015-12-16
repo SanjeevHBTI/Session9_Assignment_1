@@ -1,0 +1,5 @@
+Petrol_data = LOAD '/Paterol_data.txt' using PigStorage(',') as (D_id:chararray,D_name:chararray,B_rate:chararray,S_rate:chararray,V_in:int,V_out:int,Year:int);
+Id_Srate_Vout = FOREACH Petrol_data GENERATE D_id as Did ,S_rate as Srate , V_out as Vout;
+Order_data = ORDER Id_Srate_Vout BY Srate desc; 
+Result = LIMIT Order_data 10;
+DUMP Result;
