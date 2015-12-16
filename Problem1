@@ -1,0 +1,5 @@
+Petrol_data = LOAD '/Paterol_data.txt' using PigStorage(',') as (D_id:chararray,D_name:chararray,B_rate:chararray,S_rate:chararray,V_in:int,V_out:int,Year:int);
+Dname_Vout = FOREACH Petrol_data GENERATE D_name as Dname ,V_out as Vout;
+Group_data = GROUP Dname_Vout BY Dname;
+Result = FOREACH Group_data GENERATE SUM(Dname_Vout.Vout);
+DUMP Result;
