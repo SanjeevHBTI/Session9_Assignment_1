@@ -1,0 +1,5 @@
+
+Petrol_data = LOAD '/Paterol_data.txt' using PigStorage(',') as (D_id:chararray,D_name:chararray,B_rate:chararray,S_rate:chararray,V_in:int,V_out:int,Year:int);
+Order_data = ORDER Petrol_data BY S_rate ASC;
+Result = LIMIT Order_data 1;
+DUMP Result;
