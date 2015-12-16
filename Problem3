@@ -1,0 +1,5 @@
+Petrol_data = LOAD '/Paterol_data.txt' using PigStorage(',') as (D_id:chararray,D_name:chararray,B_rate:chararray,S_rate:chararray,V_in:int,V_out:int,Year:int);
+Id_Vin = FOREACH Petrol_data GENERATE D_id as Did ,V_in as Vin;
+Order_data = ORDER Id_Vin BY Vin desc; 
+Result = LIMIT Order_data 10;
+DUMP Result;
